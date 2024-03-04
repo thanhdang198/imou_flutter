@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
+import 'package:imou_plugin/embeed/camera_view.dart';
 import 'package:imou_plugin/imou_plugin.dart';
+import 'package:imou_plugin/model/camera_view_options.dart';
+import 'package:imou_plugin/repository/get_access_token.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,6 +25,24 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      var res = await ImouConnect.getAccessToken(
+          appId: 'lc673b804bdb5849cd',
+          appSecret: '084b036c517c4f4d94e0583e0f770a',
+          id: '121223');
+      setState(() {
+        cameraViewOptions = CameraViewOptions(
+            accessToken: res?.result?.data?.accessToken ?? '',
+            deviceId: 'deviceId',
+            channelId: 0,
+            psk: 'psk',
+            playToken: 'playToken',
+            bateMode: 0,
+            isOpt: true,
+            isOpenAudio: true,
+            imageSize: 500);
+      });
+    });
     initPlatformState();
   }
 
@@ -30,10 +51,7 @@ class _MyAppState extends State<MyApp> {
     String platformVersion;
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
-    try {
-      platformVersion =
-          await _imouPlugin.getPlatformVersion() ?? 'Unknown platform version';
-    } on PlatformException {
+    try {} on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
 
@@ -42,11 +60,10 @@ class _MyAppState extends State<MyApp> {
     // setState to update our non-existent appearance.
     if (!mounted) return;
 
-    setState(() {
-      _platformVersion = platformVersion;
-    });
+    setState(() {});
   }
 
+  CameraViewOptions? cameraViewOptions;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -55,7 +72,15 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: cameraViewOptions != null
+              ? CameraView(
+                  onCreated: (controller) {
+                    controller.initSDK(cameraViewOptions!);
+                    print('called init ');
+                  },
+                  cameraViewOptions: cameraViewOptions!,
+                )
+              : Text("Vietmapppp"),
         ),
       ),
     );

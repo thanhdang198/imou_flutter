@@ -11,6 +11,7 @@ import io.flutter.plugin.platform.PlatformViewFactory
 class CameraViewFactory(private val messenger: BinaryMessenger, private val activity: Activity, private  val binding: ActivityPluginBinding) : PlatformViewFactory(
     StandardMessageCodec.INSTANCE) {
     override fun create(context: Context?, viewId: Int, args: Any?): PlatformView {
+        print("+++++++++++++++++++++++++++$viewId")
         if (context != null) {
 //            Vietmap.getInstance(context)
         }

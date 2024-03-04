@@ -39,14 +39,18 @@ android {
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
+        main.jniLibs.srcDirs += 'src/main/jniLibs'
     }
 
     defaultConfig {
         minSdkVersion 16
+        ndk{
+            abiFilters "armeabi","arm64-v8a"
+        }
     }
 }
 
 dependencies {
-    implementation files('libs/lechangeSDK.jar')
-    implementation fileTree(dir: '/Users/thanhdt/Documents/personal-project/imou_plugin/android/src/main/kotlin/com/example/imou_plugin/libs', include: ['*.aar', '*.jar'], exclude: [])
+    implementation files('src/main/kotlin/com/example/imou_plugin/libs/lechangeSDK.jar')
+//    implementation("commons-codec:commons-codec:1.16.1")
 }
