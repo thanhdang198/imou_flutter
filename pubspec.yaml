@@ -40,7 +40,7 @@ flutter:
         package: com.example.imou_plugin
         pluginClass: ImouPlugin
       ios:
-        pluginClass: ImouPlugin
+        pluginClass: ImouPluginSwiftV2
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
