@@ -1,0 +1,35 @@
+PODS:
+  - Flutter (1.0.0)
+  - imou_plugin (0.0.1):
+    - Flutter
+    - LCOpenSDK
+  - integration_test (0.0.1):
+    - Flutter
+  - LCOpenSDK (3.12.05)
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - imou_plugin (from `.symlinks/plugins/imou_plugin/ios`)
+  - integration_test (from `.symlinks/plugins/integration_test/ios`)
+
+SPEC REPOS:
+  trunk:
+    - LCOpenSDK
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  imou_plugin:
+    :path: ".symlinks/plugins/imou_plugin/ios"
+  integration_test:
+    :path: ".symlinks/plugins/integration_test/ios"
+
+SPEC CHECKSUMS:
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  imou_plugin: ec49a0c807c1ba8df2f6a66009925d59f2ebdc04
+  integration_test: 13825b8a9334a850581300559b8839134b124670
+  LCOpenSDK: 56f3dc8bbf546c7b6a4077f953c72fc586369949
+
+PODFILE CHECKSUM: 9d8d1770d47a428fcb57a5d5f228a34e6d072ae7
+
+COCOAPODS: 1.15.2
