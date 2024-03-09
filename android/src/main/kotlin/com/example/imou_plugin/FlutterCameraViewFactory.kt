@@ -3,25 +3,20 @@ package com.example.imou_plugin
 import android.app.Activity
 import android.app.Application
 import android.content.Context
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
-import androidx.annotation.RequiresApi
 import com.lechange.opensdk.api.InitParams
 import com.lechange.opensdk.api.LCOpenSDK_Api
+import com.lechange.opensdk.media.DeviceInitInfo
+import com.lechange.opensdk.media.LCOpenSDK_ParamReal
+import com.lechange.opensdk.media.LCOpenSDK_PlayWindow
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.EventChannel
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.platform.PlatformView
-
-import com.lechange.opensdk.media.LCOpenSDK_ParamReal
-import com.lechange.opensdk.media.LCOpenSDK_PlayWindow
-import java.text.MessageFormat
-import java.time.Instant
-import java.util.UUID
 
 class FlutterCameraViewFactory(
     ctx: Context,
@@ -43,7 +38,7 @@ class FlutterCameraViewFactory(
     private var channelId: String = ""
     private var psk: Int = 0
     private var playToken = ""
-
+//    private var searchedDeviceInitInfo: DeviceInitInfo?=null
     // accessToken, deviceId, channelId, psk, playToken, bateMode, isOpt, isOpenAudio, imageSize
     init {
         activity.application.registerActivityLifecycleCallbacks(this)
@@ -64,7 +59,8 @@ class FlutterCameraViewFactory(
         playWindow.stopRtspReal(true);
         playWindow.uninitPlayWindow();
     }
-
+    private fun findDevice(){
+    }
     private fun initSDK(call: MethodCall, result: MethodChannel.Result) {
         val accessToken: String = call.argument("accessToken")!!
 
@@ -73,14 +69,16 @@ class FlutterCameraViewFactory(
         val channelId: Int = call.argument("channelId")!!
         val psk: String = call.argument("psk")!!
         val playToken: String = call.argument("playToken")!!
+
 //        val bateMode: Int = call.argument("bateMode")!!
 //        val isOpt: Boolean = call.argument("isOpt")!!
 //        val isOpenAudio: Boolean = call.argument("isOpenAudio")!!
 //        val imageSize: Int = call.argument("imageSize")!!
 
         val playWindow: LCOpenSDK_PlayWindow = LCOpenSDK_PlayWindow();
-        playWindow.initPlayWindow(context, frameLayout, 0, false);
-        playWindow.openTouchListener();
+//        playWindow.openTouchListener();
+
+        playWindow.initPlayWindow(context, frameLayout, 0, true);
         /**
          * Start preview
          * 1. Prepare to preview the parameters
@@ -90,11 +88,13 @@ class FlutterCameraViewFactory(
          * 5. Release resources
          */
         // accessToken, deviceId, channelId, psk, playToken, bateMode, isOpt, isOpenAudio, imageSize
+        print(accessToken)
+        print(deviceId)
         val paramReal: LCOpenSDK_ParamReal = LCOpenSDK_ParamReal(
             accessToken,
             deviceId,
             0,
-            "",
+            deviceId,
             "",
             0,
             true,

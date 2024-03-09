@@ -39,7 +39,7 @@ android {
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
-        main.jniLibs.srcDirs += 'src/main/jniLibs'
+//        main.jniLibs.srcDirs += 'src/main/jniLibs'
     }
 
     defaultConfig {
@@ -51,6 +51,11 @@ android {
 }
 
 dependencies {
-    implementation files('src/main/kotlin/com/example/imou_plugin/libs/lechangeSDK.jar')
+//    implementation files('src/main/kotlin/com/example/imou_plugin/libs/lechangeSDK.jar')
+
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+    implementation("com.google.code.gson:gson:2.7")
+    implementation files('src/main/kotlin/com/example/imou_plugin/libs/LCOpenSDK.aar')
+
 //    implementation("commons-codec:commons-codec:1.16.1")
 }

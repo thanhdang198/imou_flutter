@@ -17,6 +17,7 @@
         android:extractNativeLibs="true"
         android:label="imou_plugin_example"
         android:name="${applicationName}"
+        android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
