@@ -8,13 +8,13 @@
 import Foundation
 import Flutter
 import UIKit
-class ImouFactory :NSObject, FlutterStreamHandler{
-    func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
+public class ImouFactory :NSObject, FlutterStreamHandler{
+    public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
         
         return nil
     }
     
-    func onCancel(withArguments arguments: Any?) -> FlutterError? {
+    public func onCancel(withArguments arguments: Any?) -> FlutterError? {
         
         return nil
     }

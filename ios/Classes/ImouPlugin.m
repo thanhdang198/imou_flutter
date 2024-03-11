@@ -3,7 +3,7 @@
 
 @implementation ImouPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
-    [SwiftImouPlugin registerWithRegistrar:registrar];
+    [ImouPluginSwift registerWithRegistrar:registrar];
     
 //    FLNativeViewFactory* factory =
 //        [[FLNativeViewFactory alloc] initWithRegistrar:registrar.messenger];

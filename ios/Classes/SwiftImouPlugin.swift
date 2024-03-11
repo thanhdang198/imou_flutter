@@ -9,8 +9,8 @@ import Foundation
 import Flutter
 import UIKit
 
-class SwiftImouPlugin: ImouFactory ,FlutterPlugin{
-    static func register(with registrar: FlutterPluginRegistrar) {
+public class SwiftImouPlugin: ImouFactory ,FlutterPlugin{
+    public static func register(with registrar: FlutterPluginRegistrar) {
         
         let channel = FlutterMethodChannel(name: "navigation_plugin", binaryMessenger: registrar.messenger())
         let eventChannel = FlutterEventChannel(name: "navigation_plugin/events", binaryMessenger: registrar.messenger())

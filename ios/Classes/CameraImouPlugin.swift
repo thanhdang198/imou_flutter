@@ -7,11 +7,11 @@
 
 import Foundation
 import Flutter
-class CameraImouPlugin :ImouFactory, FlutterPlugin{
-    static func register(with registrar: FlutterPluginRegistrar) {
+public class CameraImouPlugin :ImouFactory, FlutterPlugin{
+    public static func register(with registrar: FlutterPluginRegistrar) {
         
-        let channel = FlutterMethodChannel(name: "navigation_plugin", binaryMessenger: registrar.messenger())
-        let eventChannel = FlutterEventChannel(name: "navigation_plugin/events", binaryMessenger: registrar.messenger())
+        let channel = FlutterMethodChannel(name: "imou_plugin", binaryMessenger: registrar.messenger())
+        let eventChannel = FlutterEventChannel(name: "imou_plugin/events", binaryMessenger: registrar.messenger())
         let instance = CameraImouPlugin()
         registrar.addMethodCallDelegate(instance, channel: channel)
         eventChannel.setStreamHandler(instance)
