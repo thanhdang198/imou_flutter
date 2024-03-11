@@ -72,8 +72,8 @@ class FlutterCameraViewFactory(
 
 //        val bateMode: Int = call.argument("bateMode")!!
 //        val isOpt: Boolean = call.argument("isOpt")!!
-//        val isOpenAudio: Boolean = call.argument("isOpenAudio")!!
-//        val imageSize: Int = call.argument("imageSize")!!
+        val isOpenAudio: Boolean = call.argument("isOpenAudio")?:true
+        val imageSize: Int = call.argument("imageSize")?:300
 
         val playWindow: LCOpenSDK_PlayWindow = LCOpenSDK_PlayWindow();
 //        playWindow.openTouchListener();
@@ -98,8 +98,8 @@ class FlutterCameraViewFactory(
             "",
             0,
             true,
-            true,
-            500
+            isOpenAudio,
+            imageSize
         )
         playWindow.playRtspReal(paramReal);
     }

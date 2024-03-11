@@ -7,7 +7,15 @@ class CameraViewOptions {
   final int bateMode;
   final bool isOpt;
   final bool isOpenAudio;
+
+  /// use for android
   final int imageSize;
+
+  /// use only for ios
+  final int width;
+
+  /// use only for ios
+  final int height;
 
   CameraViewOptions(
       {required this.accessToken,
@@ -16,6 +24,8 @@ class CameraViewOptions {
       required this.psk,
       required this.playToken,
       required this.bateMode,
+      this.width = 400,
+      this.height = 300,
       required this.isOpt,
       required this.isOpenAudio,
       required this.imageSize});
@@ -29,7 +39,9 @@ class CameraViewOptions {
       'bateMode': bateMode,
       'isOpt': isOpt,
       'isOpenAudio': isOpenAudio,
-      'imageSize': imageSize
+      'imageSize': imageSize,
+      'width': width,
+      'height': height
     };
   }
 }

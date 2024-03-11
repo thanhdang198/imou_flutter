@@ -28,14 +28,16 @@ public class ImouCameraFactory : ImouFactory, FlutterPlatformView{
         self.messenger = messenger
         self.channel = FlutterMethodChannel(name: "imou_plugin/\(viewId)", binaryMessenger: messenger)
         self.eventChannel = FlutterEventChannel(name: "imou_plugin/\(viewId)/events", binaryMessenger: messenger)
-        m_play = LCOpenSDK_PlayRealWindow(playWindow: CGRect(x: 0, y: 0, width: 400, height: 300), index: 0)
+        
+        let width: Int? = arguments?["width"] as? Int? ?? 400
+        let height: Int? = arguments?["height"] as? Int? ?? 300
+        m_play = LCOpenSDK_PlayRealWindow(playWindow: CGRect(x: 0, y: 0, width:width ?? 400, height: height ?? 300), index: 0)
         m_play.setSurfaceBGColor(UIColor.black)
         
-//        m_play.setPlayRealListener(listener as? LCOpenSDK_PlayRealListener)
         super.init()
-//        self.view().addSubview(m_play.getWindowView())
+
         self.eventChannel.setStreamHandler(self)
-        
+         
         self.channel.setMethodCallHandler { [weak self](call, result) in
             
             guard self != nil else { return }

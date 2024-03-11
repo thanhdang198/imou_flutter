@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
 import 'package:imou_plugin/embeed/camera_view.dart';
-import 'package:imou_plugin/imou_plugin.dart';
 import 'package:imou_plugin/model/access_token_response.dart';
 import 'package:imou_plugin/model/camera_view_options.dart';
 import 'package:imou_plugin/repository/get_access_token.dart';
@@ -20,59 +16,49 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-  final _imouPlugin = ImouPlugin();
   AccessTokenResponse? res;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      // _getData();
-
       var resTmp = await ImouConnect.getAccessToken(
+
+          /// 2 cái này lấy từ website imou
           appId: 'lc673b804bdb5849cd',
           appSecret: '084b036c517c4f4d94e0583e0f770a',
+
+          /// id là chuỗi string ngẫu nhiên
           id: '121223');
       setState(() {
         res = resTmp;
       });
     });
-    initPlatformState();
   }
 
   _getData() async {
     setState(() {
       cameraViewOptions = CameraViewOptions(
+
+          /// Access token được lấy từ api
           accessToken: res?.result?.data?.accessToken ?? '',
+
+          /// Serial của camera
           deviceId: '9E0CA37PBVD4085',
           // deviceId: 'L28F3A2D',
           // deviceId: '2AVYF-IPC-CX2S',
+          /// 5 cái này giữ nguyên
           channelId: 0,
           psk: 'psk',
           playToken: '',
           bateMode: 0,
           isOpt: true,
+          // Width, height cho iOS
+          width: 100,
+          height: 100,
           isOpenAudio: true,
           imageSize: 500);
     });
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  FutureOr<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {} on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {});
   }
 
   CameraViewOptions? cameraViewOptions;
@@ -90,11 +76,12 @@ class _MyAppState extends State<MyApp> {
                 onPressed: () {
                   _getData();
                 },
-                child: Text('getData')),
+                child: Text('Show camera')),
             cameraViewOptions != null
                 ? SizedBox(
-                    height: 450,
-                    width: double.infinity,
+                    /// Width height cho android
+                    width: 100,
+                    height: 100,
                     child: CameraView(
                       onCreated: (controller) {
                         controller.initSDK(cameraViewOptions!);
@@ -103,7 +90,7 @@ class _MyAppState extends State<MyApp> {
                       cameraViewOptions: cameraViewOptions!,
                     ),
                   )
-                : Text("Vietmapppp"),
+                : Text("Click button below to show view"),
             Text('Thanhdang98')
           ],
         )),
