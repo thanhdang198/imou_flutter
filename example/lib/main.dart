@@ -25,11 +25,14 @@ class _MyAppState extends State<MyApp> {
       var resTmp = await ImouConnect.getAccessToken(
 
           /// 2 cái này lấy từ website imou
-          appId: 'lc673b804bdb5849cd',
-          appSecret: '084b036c517c4f4d94e0583e0f770a',
+          // appId: 'lc673b804bdb5849cd',
+          // appSecret: '084b036c517c4f4d94e0583e0f770a',
+          appId: 'lcc41c89fa2aa643f7',
+          appSecret: '4a3d2ce2b8614c4ca7082e3d8db35c',
 
           /// id là chuỗi string ngẫu nhiên
           id: '121223');
+      print(resTmp);
       setState(() {
         res = resTmp;
       });

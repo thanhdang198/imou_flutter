@@ -28,11 +28,13 @@ class ImouConnect {
       "id": id,
       "params": {}
     };
+
     try {
       var req = await Dio().post(serverUrl, data: initialBody);
       print(req.data);
       return AccessTokenResponse.fromJson(json.decode(req.data));
     } catch (e) {
+      print("Failure");
       return null;
     }
   }

@@ -6,6 +6,7 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://jitpack.io" }
     }
 
     dependencies {
@@ -19,6 +20,10 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://jitpack.io" }
+        flatDir{
+            dirs 'libs'
+        }
     }
 }
 
@@ -51,11 +56,12 @@ android {
 }
 
 dependencies {
-//    implementation files('src/main/kotlin/com/example/imou_plugin/libs/lechangeSDK.jar')
+    implementation files('libs/lechangeSDK.jar')
 
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
     implementation("com.google.code.gson:gson:2.7")
-    implementation files('src/main/kotlin/com/example/imou_plugin/libs/LCOpenSDK.aar')
+//    compileOnly(files('src/main/kotlin/com/example/imou_plugin/libs/LCOpenSDK.aar'))
+//    implementation 'com.github.thanhdang198:imou_android:1.0.3'
 
 //    implementation("commons-codec:commons-codec:1.16.1")
 }
