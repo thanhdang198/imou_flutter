@@ -57,7 +57,7 @@ android {
 }
 
 dependencies {
-    implementation(files("libs/LCOpenSDK.aar"))
+    compileOnly(files("libs/LCOpenSDK.aar"))
 
 //    implementation fileTree(dir: 'libs', include: '*.aar')
 //    testImplementation fileTree(dir: 'libs', include: '*.aar')
