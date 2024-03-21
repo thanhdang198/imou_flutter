@@ -16,7 +16,7 @@ dependencies:
       ref: release
 ```
 Chuyển `ref: release` để có thể chạy & test SDK
-
+## Test Camera view & build aar release
 Hướng dẫn chạy, test và build app đẩy lên store trong trường hợp này:
 Mở lần lượt các folder như bên dưới
 B1. Mở folder `android`
