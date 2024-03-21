@@ -3,9 +3,11 @@ version '1.0-SNAPSHOT'
 
 buildscript {
     ext.kotlin_version = '1.6.10'
+
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
 
     dependencies {
@@ -55,7 +57,17 @@ android {
 }
 
 dependencies {
-    implementation files('libs/LCOpenSDK.aar')
+    implementation(files("libs/LCOpenSDK.aar"))
+
+//    implementation fileTree(dir: 'libs', include: '*.aar')
+//    testImplementation fileTree(dir: 'libs', include: '*.aar')
+//    api(files('libs/LCOpenSDK.aar'))
+//    implementation(files('libs/LCOpenSDK.aar'))
+//    implementation('com.github.thanhdang198:imou_android:1.1.2')
+//            {transitive=true}
+
+
+
 //    implementation project(":lechangesdkimou", configuration = "default")
 //    implementation project(':lechangesdkimou')
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
@@ -65,3 +77,9 @@ dependencies {
 
 //    implementation("commons-codec:commons-codec:1.16.1")
 }
+
+//jacocoTestReport {
+//    reports {
+//        xml.enabled true
+//    }
+//}

@@ -1,1 +1,13 @@
+pluginManagement {
+    buildscript {
+        repositories {
+            flatDir {
+                dirs 'libs'
+            }
+        }
+        dependencies {
+            classpath fileTree(dir: 'libs', include: '*.aar')
+        }
+    }
+}
 rootProject.name = 'imou_plugin'
